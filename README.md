@@ -8,4 +8,13 @@
 
 <img src="https://user-images.githubusercontent.com/58774316/110206669-75cc2380-7ec2-11eb-810a-a7dd96d7f969.jpg" width="50%">
 
+<br>
+
 ## UML Class Diagram
+![gabage](https://user-images.githubusercontent.com/58774316/112718006-97558380-8f33-11eb-97c0-b306d9770485.jpg)
+
+<br>
+
+## ERD
+
+![Untitled](https://user-images.githubusercontent.com/58774316/112718010-a0465500-8f33-11eb-9769-5607ffd5b3d0.png)
