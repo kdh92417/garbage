@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block menu %}
+    <a class="nav-link"  href="/entrance/in/">입차</a>
+    <a class="nav-link" href="/entrance/out/">출차</a>
+    <a class="nav-link" href="/entrance/payment/">정산</a>
+    <a class="nav-link" href="/entrance/manager/">관리자</a>
+    <a class="nav-link" href="/">Home</a>
+{% endblock menu %}
+
+
+{% block content %}
+
+
+{% if door %}
+    <h1>OPEN</h1>
+    <h3> {{ door }}</h3>
+
+{% elif error %}
+    <h1>ERROR</h1>
+    <h3> {{ error }}</h3>
+{% endif %}
+
+{% endblock content %}

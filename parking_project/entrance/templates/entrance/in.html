@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>In Gate</h1>
+<br>
+<h5>차량번호를 입력하세요</h5>
+
+<form action="{% url 'entrance:in' %}" method="post">
+    {% csrf_token %}
+    <p><input type="text" placeholder="car number" name="number"></p>
+    <br>
+    <button type="submit" class="btn btn-lg btn-secondary fw-bold border-white bg-white">IN</button>
+
+</form>
+
+{% endblock content %}

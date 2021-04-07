@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block menu %}
+    <a class="nav-link"  href="/entrance/in/">입차</a>
+    <a class="nav-link" href="/entrance/out/">출차</a>
+    <a class="nav-link active" aria-current="page" href="/entrance/payment/">정산</a>
+    <a class="nav-link" href="/entrance/manager/">관리자</a>
+    <a class="nav-link" href="/">Home</a>
+{% endblock menu %}
+
+{% block content %}
+
+{% if car and record %}
+<h2>정산 차량번호 : {{ car.number }} </h2>
+<br>
+<h4>주차요금 : {{ record.paid_amount }}</h4>
+<h4>할인된 요금 : {{ record.discount_amount }}</h4>
+<h4>지불해야될 총 요금 : {{ record.total_paid_amount }}</h4>
+
+<br>
+
+    <form action="{% url 'entrance:payment'" method="post">
+    {% csrf_token %}
+        <p>
+            <input type="text" class="form-control" placeholder="Coupon" name="coupon">
+            <br>
+            <button type="submit" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Apply Coupon</button>
+        </p>
+        <br>
+    <form action="">
+    {% csrf_token %}
+        <select class="form-control">
+          <option name="cash">현금 결재</option>
+          <option name="card">카드 결재</option>
+        </select>
+        <br>
+        <button type="submit" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Pay</button>
+    </form>
+{% else %}
+    <h1>정산할 차량번호를 입력하세요</h1><br>
+    <form action="{% url 'entrance:pay'" method="post">
+    {% csrf_token %}
+        <p>
+            <input type="text" class="form-control" placeholder="Car Number" name="car_num">
+            <br>
+            <button type="submit" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Search Car</button>
+        </p>
+    </form>
+{% endif %}
+
+
+
+
+
+
+
+{% endblock content %}
+
+
