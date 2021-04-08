@@ -5,8 +5,9 @@ app_name = 'entrance'
 urlpatterns = [
     path('in/', views.InView.as_view(), name='in'),
     path('out/', views.OutView.as_view(), name='out'),
+    path('discount/<int:record_id>', views.DiscountView.as_view(), name='discount'),
     path('payment/', views.PaymentView.as_view(), name='payment'),
-    path('result/', views.PayView.as_view(), name='pay')
+    path('pay/<int:record_id>', views.PayView.as_view(), name='pay')
 ]
 
 

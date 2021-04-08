@@ -2,25 +2,25 @@
 
 {% block menu %}
     <a class="nav-link"  href="/entrance/in/">입차</a>
-    <a class="nav-link active" aria-current="page" href="/entrance/out/">출차</a>
-    <a class="nav-link" href="/entrance/discount/">할인</a>
+    <a class="nav-link"  href="/entrance/out/">출차</a>
+    <a class="nav-link active" aria-current="page" href="/entrance/discount/">할인</a>
     <a class="nav-link" href="/entrance/payment/">정산</a>
     <a class="nav-link" href="/entrance/manager/">관리자</a>
     <a class="nav-link" href="/">Home</a>
 {% endblock menu %}
 
 {% block content %}
-<h1>Out Gate</h1>
+<h1>Discount</h1>
 <br>
-<h5>차량번호 입력하세요</h5>
+<h5>할인권이 있으면 입력 부탁드립니다.</h5>
 <br>
 <form action="" method="post">
     {% csrf_token %}
     <p>
-        <input type="text" placeholder="Car Number" name="number">
+        <input type="text" placeholder="Coupon" name="coupon">
     </p>
     <br>
-    <button type="submit" class="btn btn-lg btn-secondary fw-bold border-white bg-white">OUT</button>
+    <button type="submit" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Discount</button>
 </form>
 
 {% endblock content %}
