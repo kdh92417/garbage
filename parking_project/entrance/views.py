@@ -127,17 +127,17 @@ class PaymentView(TemplateView):
         discount_amount = discount_table[coupon]
         total_paid_amount = abs()
 
-class PayView(TemplateView):
-
-    def post(self, request):
-        car_num = request.POST.get('car_num', None)
-        car = Car.objects.get(number=car_num)
-        record = 
-        car_filter = {
-            'car_id': car.id,
-            'entry_time__isnull': False,
-            'departure_time__isnull': True
-        }
+# class PayView(TemplateView):
+#
+#     def post(self, request):
+#         car_num = request.POST.get('car_num', None)
+#         car = Car.objects.get(number=car_num)
+#         record =
+#         car_filter = {
+#             'car_id': car.id,
+#             'entry_time__isnull': False,
+#             'departure_time__isnull': True
+#         }
 
 
 
