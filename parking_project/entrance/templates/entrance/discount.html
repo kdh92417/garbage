@@ -2,7 +2,7 @@
 
 {% block menu %}
     <a class="nav-link"  href="/entrance/in/">입차</a>
-    <a class="nav-link"  href="/entrance/out/">출차</a>
+    <a class="nav-link"  href="/entrance/out/0">출차</a>
     <a class="nav-link active" aria-current="page" href="/entrance/discount/">할인</a>
     <a class="nav-link" href="/entrance/payment/">정산</a>
     <a class="nav-link" href="/entrance/manager/">관리자</a>
@@ -14,7 +14,7 @@
 <br>
 <h5>할인권이 있으면 입력 부탁드립니다.</h5>
 <br>
-<form action="" method="post">
+<form action="{% url 'entrance:discount' record.id %}" method="post">
     {% csrf_token %}
     <p>
         <input type="text" placeholder="Coupon" name="coupon">
@@ -22,6 +22,16 @@
     <br>
     <button type="submit" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Discount</button>
 </form>
+
+<br>
+
+<form action="{% url 'entrance:payment' record.id %}" method="get">
+    <button type="submit" class="btn btn-lg btn-secondary fw-bold border-white bg-white">No Discount</button>
+</form>
+
+{% if error %}
+    <h3>{{ error }}는 잘못된 쿠폰정보입니다. 다시 입력해주세요</h3>
+{% endif %}
 
 {% endblock content %}
 

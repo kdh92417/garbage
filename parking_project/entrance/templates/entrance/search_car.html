@@ -12,19 +12,15 @@
 {% block content %}
 <h1>Out Gate</h1>
 <br>
-{% if car %}
-<h4>{{ car.number }} 차량고객님 출차를 원하시면 OUT 버튼을 눌러주세요</h4>
-<br>
-<form action="{% url 'entrance:out' car.id %}" method="post">
+
+<form action="{% url 'entrance:out' 0 %}" method="post">
     {% csrf_token %}
-    <button type="submit" class="btn btn-lg btn-secondary fw-bold border-white bg-white">OUT</button>
+    <p>
+        <input type="text" class="form-control" placeholder="Car Number" name="car_num">
+    </p>
+    <br>
+    <button type="submit" class="btn btn-lg btn-secondary fw-bold border-white bg-white">출차하기</button>
 </form>
-
-{% else %}
-
-<h3>입차부터 먼저 해주세요</h3>
-
-{% endif %}
 
 {% endblock content %}
 

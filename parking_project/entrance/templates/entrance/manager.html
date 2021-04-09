@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block menu %}
+<a class="nav-link" href="/entrance/in/">입차</a>
+<a class="nav-link" href="/entrance/out/0">출차</a>
+<a class="nav-link" href="/entrance/discount/">할인</a>
+<a class="nav-link" href="/entrance/payment/">정산</a>
+<a class="nav-link active" aria-current="page" href="/entrance/manager/">관리자</a>
+<a class="nav-link" href="/">Home</a>
+{% endblock menu %}
+
+{% block content %}
+
+{% if register %}
+
+<h4>{{ register }}</h4>
+<br>
+
+{% endif %}
+
+{% if search_car %}
+<h4>차량 넘버 : {{ search_car.number }}</h4>
+<h4>차량 타입 : {{ search_car.type }}</h4>
+<h5>등록 기간 : {{ search_car.start_date.year }}-{{ search_car.start_date.month }}-{{ search_car.start_date.day}} ~ {{ search_car.expire_date.year }}-{{ search_car.expire_date.month }}-{{ search_car.expire_date.day }}</h5>
+{% endif %}
+
+{% if error %}
+<h4>존재 하지 않는 차량입니다.</h4>
+{% endif %}
+<br>
+
+<form action="{% url 'entrance:car_manager' %}" method="get">
+
+    <p>
+        <input type="text" class="form-control" placeholder="Car Number" name="car_num">
+        <br>
+        <button type="submit"  class="btn btn-lg btn-secondary fw-bold border-white bg-white">차량
+            조회</button>
+    </p>
+</form>
+
+<form action="{% url 'entrance:car_manager' %}" method="post">
+    {% csrf_token %}
+    <p>
+        <input type="text" class="form-control" placeholder="Car Number" name="car_num">
+        <br>
+        <button type="submit" id="search-car-button" class="btn btn-lg btn-secondary fw-bold border-white bg-white">차량 등록 및 해제</button>
+        <br>
+    </p>
+</form>
+
+
+
+
+
+{% endblock content %}

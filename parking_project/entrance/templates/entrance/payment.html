@@ -2,7 +2,7 @@
 
 {% block menu %}
     <a class="nav-link"  href="/entrance/in/">입차</a>
-    <a class="nav-link" href="/entrance/out/">출차</a>
+    <a class="nav-link" href="/entrance/search/">출차</a>
     <a class="nav-link" href="/entrance/discount/">할인</a>
     <a class="nav-link active" aria-current="page" href="/entrance/payment/">정산</a>
     <a class="nav-link" href="/entrance/manager/">관리자</a>
@@ -19,7 +19,7 @@
 <h4>지불해야될 총 요금 : {{ record.total_paid_amount }}</h4>
 
 <br>
-    <form action="{% url 'entrance:pay' record.id %}" method="post">
+    <form action="{% url 'entrance:payment' record.record_id %}" method="post">
     {% csrf_token %}
         <p>
             <select class="form-control" name="payment_method">
@@ -41,12 +41,6 @@
         </p>
     </form>
 {% endif %}
-
-
-
-
-
-
 
 {% endblock content %}
 
