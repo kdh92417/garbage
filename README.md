@@ -17,4 +17,4 @@
 
 ## ERD
 
-![Untitled](https://user-images.githubusercontent.com/58774316/112718010-a0465500-8f33-11eb-9769-5607ffd5b3d0.png)
+![주차장 정산 시스템 ERD](https://user-images.githubusercontent.com/58774316/114266973-4e71f480-9a34-11eb-98f5-172fff5ba786.png)
