@@ -108,7 +108,7 @@ class OutView(View):
             record.save()
 
             if car.type == 'Member':
-                res['door'] = '정기회원 이십니다. 차단기를 오픈합니다. '
+                res['member'] = '정기회원 이십니다. 차단기를 오픈합니다. '
                 return render(request, 'entrance/open.html', res)
             # Guest 일경우
             else:
