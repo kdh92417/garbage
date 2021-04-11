@@ -24,6 +24,12 @@
 
 <br>
 
+## Demo Video
+
+[![Video Label](https://user-images.githubusercontent.com/58774316/114295594-30ae9900-9ae1-11eb-9e75-9c64a7a530e5.png)](https://youtu.be/FvXWv3XBcds)
+
+<br>
+
 ## API
 
 - `entrance/in/` : 차량 입차 (정기차량과 손님아량 구분)
