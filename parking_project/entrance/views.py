@@ -1,3 +1,4 @@
+import re
 from django.http        import HttpResponseRedirect
 from django.urls        import reverse
 
@@ -29,10 +30,17 @@ class InView(View):
 
         # 차량넘버가 입력되지않으면 예외처리
         if number == None or number == '':
+
             res['error'] = '차량번호를 입력해주세요'
             return render(request, 'entrance/open.html', res)
 
         try:
+            if re.match("[0-9]{2}[가-힣]{1}[0-9]{4}", number) == None:
+                res['error'] = '잘못된 차량번호입니다. ex) 17도2818 '
+                return render(request, 'entrance/open.html', res)
+            elif re.match("[0-9]{2}[가-힣]{1}[0-9]{4}", number).group() != number:
+                res['error'] = '잘못된 차량번호입니다. ex) 17도2818 '
+                return render(request, 'entrance/open.html', res)
             car = Car.objects.get(number=number)
 
         # 정기차량으로 등록되지 않으면 Guest로 차량 등록
@@ -88,8 +96,12 @@ class OutView(View):
         except Car.DoesNotExist:
             if car_id == 0:
                 car_num = request.POST.get('car_num')
-                car = Car.objects.get(number=car_num)
-                return HttpResponseRedirect(reverse('entrance:out', args=(car.id,)))
+                try:
+                    car = Car.objects.get(number=car_num)
+                    return HttpResponseRedirect(reverse('entrance:out', args=(car.id,)))
+                except Car.DoesNotExist:
+                    res['error'] = '잘못된 차량번호 입니다.'
+                    return render(request, 'entrance/open.html', res)
             res['error'] = '잘못된 차량번호 입니다.'
             return render(request, 'entrance/open.html', res)
 
@@ -102,7 +114,7 @@ class OutView(View):
             record = Record.objects.filter(**car_filter)[0]
             departure_time = datetime.now()
             entry_time = record.entry_time
-            parking_time = (departure_time - entry_time).seconds / 60
+            parking_time = (departure_time - entry_time).seconds / 10
             record.departure_time = departure_time
             record.parking_time = parking_time
             record.save()
@@ -112,7 +124,7 @@ class OutView(View):
                 return render(request, 'entrance/open.html', res)
             # Guest 일경우
             else:
-                fare = (parking_time // 1) * 100
+                fare = (parking_time // 1) * 1000
                 payment = PaymentRecord(
                     record_id = record.id,
                     paid_amount = fare,
@@ -146,7 +158,7 @@ class DiscountView(View):
                     'B': 10000,
                     'C': 15000,
                     'D': 30000,
-                    'F': 100000
+                    'E': 100000
                 }
                 discount = discount_table[coupon]
                 payment.discount_amount = discount
